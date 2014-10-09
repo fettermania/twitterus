@@ -17,6 +17,10 @@ function ButtonView() {
     });
 
     this.add(this.rootMod).add(buttonSurface);
+
+    buttonSurface.on('click', function() {
+        this._eventOutput.emit('buttonClick', this.options.name);
+    }.bind(this));
 }
 
 ButtonView.prototype = Object.create(View.prototype);

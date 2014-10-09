@@ -9,6 +9,10 @@ function ButtonBar() {
 
     _createLayout.call(this);
     _createButtons.call(this);
+
+    this._eventInput.on('buttonClick', function(buttonName) {
+        this._eventOutput.emit('changeSelection', buttonName);
+    }.bind(this));
 }
 
 ButtonBar.prototype = Object.create(View.prototype);
@@ -32,6 +36,7 @@ function _createButtons() {
         var button = new ButtonView(buttonInfo);
 
         buttons.push(button);
+        this.subscribe(button);
     }
 
     this.layout.sequenceFrom(buttons);

@@ -1,19 +1,22 @@
 var View = require('famous/core/View');
 var Surface = require('famous/core/Surface');
-
+var Lightbox = require('famous/views/Lightbox');
 var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
 
+var FeedView = require('./FeedView');
+var ProfileView = require('./ProfileView');
 var ButtonBar = require('./ButtonBar');
 
 function AppView() {
     View.apply(this, arguments);
 
     this.layout;
+    this.sections = {};
 
     _createLayout.call(this);
     _addHeader.call(this);
     _addFooter.call(this);
-    // _init();
+    _createSections.call(this);
 }
 
 AppView.prototype = Object.create(View.prototype);
@@ -28,6 +31,9 @@ function _createLayout() {
     });
 
     this.add(this.layout);
+
+    this.lightbox = new Lightbox();
+    this.layout.content.add(this.lightbox);
 }
 
 function _addHeader() {
@@ -46,6 +52,15 @@ function _addFooter() {
     });
 
     this.layout.footer.add(this.buttonBar);
+
+    this.buttonBar.on('changeSelection', function(selectionName) {
+        this.lightbox.show(this.sections[selectionName]);
+    }.bind(this));
+}
+
+function _createSections() {
+    this.sections['Home'] = new FeedView();
+    this.sections['Profile'] = new ProfileView();
 }
 
 module.exports = AppView;
