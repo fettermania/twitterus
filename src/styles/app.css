@@ -1,5 +1,9 @@
 html {
-  background: #e3e3e3;
+  /*background: #e3e3e3;*/
+}
+
+body {
+    font-family: 'Avenir'
 }
 
 .backfaceVisibility {
@@ -9,12 +13,16 @@ html {
 
 .button {
     text-align: center;
+    cursor: pointer;
 }
 
 .button p {
     margin: 0;
-    font-family: 'Avenir';
     font-size: 12px;
     font-weight: 600;
     color: #3be;
+}
+
+.tweet {
+    padding: 20px;
 }

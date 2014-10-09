@@ -21,6 +21,7 @@ function AppView() {
     _createSections.call(this);
 
     this.lightbox.show(this.sections[0]);
+    this.selection = 0;
 }
 
 AppView.prototype = Object.create(View.prototype);
@@ -37,10 +38,10 @@ function _createLayout() {
     this.add(this.layout);
 
     this.lightbox = new Lightbox({
-        inTransform: Transform.thenMove(Transform.rotateY(1), [100, 0, -500]),
-        outTransform: Transform.translate(-500, 0, 0),
-        inTransition: { curve: Easing.outExpo, duration: 800},
-        outTransition: { curve: 'easeIn', duration: 250},
+        inTransform: Transform.translate(500, 0, 0),
+        outTransform: Transform.thenMove(Transform.rotateY(2), [-200, 0, -300]),
+        inTransition: { curve: Easing.outExpo, duration: 400},
+        outTransition: { curve: Easing.inQuad, duration: 300},
         inOpacity: 1,
         outOpacity: 1,
         overlap: false
@@ -51,8 +52,13 @@ function _createLayout() {
 
 function _addHeader() {
     var header = new Surface({
+        content: 'Twitterus',
         properties: {
-            backgroundColor: 'blue'
+            color: 'white',
+            fontSize: '20px',
+            textAlign: 'center',
+            backgroundColor: '#3be',
+            lineHeight: this.options.headerSize + 'px'
         }
     });
 
@@ -67,12 +73,17 @@ function _addFooter() {
     this.layout.footer.add(this.buttonBar);
 
     this.buttonBar.on('changeSelection', function(index) {
+        if(index === this.selection) return;
         this.lightbox.show(this.sections[index]);
+        this.selection = index;
     }.bind(this));
 }
 
 function _createSections() {
-    this.sections.push(new FeedView());
+    this.sections.push(new FeedView({
+        tweetData: this.options.tweetData
+    }));
+
     this.sections.push(new ProfileView());
 }
 
