@@ -4,10 +4,9 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
 <g>
-	<polygon fill="#3EC7F4" points="6.727,32.979 3.209,20.954 1.508,21.975 0.146,20.387 12.853,7 14.44,7 27.147,19.989 
-		26.239,21.861 24.196,21.068 20.567,32.979 	"/>
-	<circle fill="#3EC7F4" cx="35.996" cy="11.879" r="3.857"/>
-	<circle fill="#FFFFFF" cx="13.647" cy="17.489" r="3.817"/>
-	<circle fill="#FFFFFF" cx="13.647" cy="23.68" r="1.144"/>
+	<polygon fill="#3EC7F4" points="11.571,35.823 7.286,21.175 5.213,22.419 3.555,20.485 19.034,4.177 20.967,4.177 36.445,20 
+		35.34,22.28 32.85,21.315 28.43,35.823 	"/>
+	<circle fill="#FFFFFF" cx="20.001" cy="16.955" r="4.65"/>
+	<circle fill="#FFFFFF" cx="20.001" cy="24.496" r="1.394"/>
 </g>
 </svg>

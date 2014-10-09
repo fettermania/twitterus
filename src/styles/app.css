@@ -6,3 +6,11 @@ html {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
+
+.button {
+    text-align: center;
+}
+
+.button p {
+    margin: 0;
+}

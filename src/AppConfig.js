@@ -3,15 +3,15 @@ module.exports = {
     footerSize: 60,
     buttons: [
         {
-            name: 'Home',
+            label: 'Home',
             iconUrl: 'images/home.svg'
         },
         // {
-        //     name: 'Messages',
+        //     label: 'Messages',
         //     iconUrl: 'images/messages.svg'
         // },
         {
-            name: 'Profile',
+            label: 'Profile',
             iconUrl: 'images/user.svg'
         }
     ]

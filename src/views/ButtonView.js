@@ -7,19 +7,21 @@ var Transitionable = require('famous/transitions/Transitionable');
 function ButtonView() {
     View.apply(this, arguments);
 
-    this.rootMod = new Modifier();
+    this.rootMod = new Modifier({
+        origin: [0.5, 0.5],
+        align: [0.5, 0.5]
+    });
 
     var buttonSurface = new Surface({
-        content: '<img src="' + this.options.iconUrl + '" width="20"><p>' + this.options.name + '</p>',
-        properties: {
-            textAlign: 'center'
-        }
+        size: [true, true],
+        content: '<img src="' + this.options.iconUrl + '" width="20"><p>' + this.options.label + '</p>',
+        classes: ['button']
     });
 
     this.add(this.rootMod).add(buttonSurface);
 
     buttonSurface.on('click', function() {
-        this._eventOutput.emit('buttonClick', this.options.name);
+        this._eventOutput.emit('buttonClick', this.options.index);
     }.bind(this));
 }
 
