@@ -3,6 +3,8 @@ var Surface = require('famous/core/Surface');
 
 var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
 
+var ButtonBar = require('./ButtonBar');
+
 function AppView() {
     View.apply(this, arguments);
 
@@ -39,13 +41,11 @@ function _addHeader() {
 }
 
 function _addFooter() {
-    var footer = new Surface({
-        properties: {
-            backgroundColor: 'red'
-        }
+    this.buttonBar = new ButtonBar({
+        buttons: this.options.buttons
     });
 
-    this.layout.footer.add(footer);
+    this.layout.footer.add(this.buttonBar);
 }
 
 module.exports = AppView;
