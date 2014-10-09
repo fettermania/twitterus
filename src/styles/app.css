@@ -1,5 +1,5 @@
 html {
-  background: #fff;
+  background: #e3e3e3;
 }
 
 .backfaceVisibility {
@@ -13,4 +13,8 @@ html {
 
 .button p {
     margin: 0;
+    font-family: 'Avenir';
+    font-size: 12px;
+    font-weight: 600;
+    color: #3be;
 }
