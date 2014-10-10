@@ -7,11 +7,7 @@ var ImageSurface = require('famous/surfaces/ImageSurface');
 function ProfileView() {
     View.apply(this, arguments);
 
-    this.rootNode = this.add(new Modifier({
-        origin: [0.5, 0.5],
-        align: [0.5, 0.5],
-    }));
-
+    _createBackground.call(this);
     _createProfilePic.call(this);
     _createName.call(this);
 }
@@ -21,9 +17,15 @@ ProfileView.prototype.constructor = ProfileView;
 
 ProfileView.DEFAULT_OPTIONS = {};
 
+function _createBackground() {
+    this.add(new Surface({
+        classes: ['lightest-gray']
+    }));
+}
+
 function _createProfilePic() {
     this.profileMod = new Modifier({
-        transform: Transform.translate(0, -100, 0)
+        transform: Transform.translate(0, -100, 1)
     });
 
     var profilePic = new ImageSurface({
@@ -35,12 +37,12 @@ function _createProfilePic() {
         }
     });
 
-    this.rootNode.add(this.profileMod).add(profilePic);
+    this.add(this.profileMod).add(profilePic);
 }
 
 function _createName() {
     this.nameMod = new Modifier({
-        transform: Transform.translate(0, 40, 0)
+        transform: Transform.translate(0, 40, 1)
     });
 
     var name = new Surface({
@@ -53,7 +55,7 @@ function _createName() {
         }
     });
 
-    this.rootNode.add(this.nameMod).add(name);
+    this.add(this.nameMod).add(name);
 }
 
 module.exports = ProfileView;

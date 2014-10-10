@@ -9,14 +9,11 @@ function TweetView() {
         size: [undefined, 100]        
     });
 
-    var backgroundColor = this.options.index % 2 ? '#e9e9e9' : '#f5f5f5';
+    var backgroundClass = this.options.index % 2 ? 'light-gray' : 'lightest-gray';
 
     this.tweet = new Surface({
         content: this.options.tweet + '<br>',
-        classes: ['tweet'],
-        properties: {
-            backgroundColor: backgroundColor
-        }
+        classes: ['tweet', backgroundClass]
     });
 
     this.add(this.rootMod).add(this.tweet);
