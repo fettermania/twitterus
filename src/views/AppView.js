@@ -13,15 +13,20 @@ function AppView() {
     View.apply(this, arguments);
 
     this.layout;
-    this.sections = [];
+    this.headers = [];
+    this.content = [];
 
     _createLayout.call(this);
-    _addHeader.call(this);
-    _addFooter.call(this);
-    _createSections.call(this);
+    _createHeaders.call(this);
+    _createContent.call(this);
+    _createFooter.call(this);
 
-    this.lightbox.show(this.sections[0]);
-    this.selection = 0;
+    this.buttonBar.on('changeSelection', function(index) {
+        this.headerLightbox.show(this.headers[index]);
+        this.contentLightbox.show(this.content[index]);
+    }.bind(this));
+
+    this.buttonBar.select(0);
 }
 
 AppView.prototype = Object.create(View.prototype);
@@ -37,54 +42,68 @@ function _createLayout() {
 
     this.add(this.layout);
 
-    this.lightbox = new Lightbox({
-        inTransform: Transform.translate(500, 0, 0),
-        outTransform: Transform.thenMove(Transform.rotateY(2), [-200, 0, -300]),
-        inTransition: { curve: Easing.outExpo, duration: 400},
-        outTransition: { curve: Easing.inQuad, duration: 300},
+    this.contentLightbox = new Lightbox({
+        inTransform: Transform.translate(500, 0, -800),
+        outTransform: Transform.thenMove(Transform.rotateY(1.3), [-200, 0, -500]),
+        inTransition: { curve: Easing.outExpo, duration: 350},
+        outTransition: { curve: Easing.inQuad, duration: 250},
         inOpacity: 1,
         outOpacity: 1,
         overlap: false
     });
 
-    this.layout.content.add(this.lightbox);
+    this.layout.content.add(this.contentLightbox);
+
+    this.headerLightbox = new Lightbox({
+        inTransform: Transform.translate(0, -100, 0),
+        outTransform: Transform.translate(0, -100, 0),
+        inTransition: { curve: Easing.outExpo, duration: 350},
+        outTransition: { curve: Easing.inQuad, duration: 250},
+        inOpacity: 1,
+        outOpacity: 0,
+        overlap: false
+    });
+
+    this.layout.header.add(this.headerLightbox);
 }
 
-function _addHeader() {
-    var header = new Surface({
-        content: 'Twitterus',
+function _createHeaders() {
+    var background = new Surface({
         properties: {
-            color: 'white',
-            fontSize: '20px',
-            textAlign: 'center',
             backgroundColor: '#3be',
-            lineHeight: this.options.headerSize + 'px'
         }
     });
 
-    this.layout.header.add(header);
+    this.layout.header.add(background);
+
+    for (var i = 0; i < this.options.sections.length; i++) {
+        var header = new Surface({
+            content: this.options.sections[i].title,
+            properties: {
+                color: 'white',
+                fontSize: '20px',
+                textAlign: 'center',
+                lineHeight: this.options.headerSize + 'px'
+            }
+        });
+        this.headers.push(header);
+    }
 }
 
-function _addFooter() {
-    this.buttonBar = new ButtonBar({
-        buttons: this.options.buttons
-    });
-
-    this.layout.footer.add(this.buttonBar);
-
-    this.buttonBar.on('changeSelection', function(index) {
-        if(index === this.selection) return;
-        this.lightbox.show(this.sections[index]);
-        this.selection = index;
-    }.bind(this));
-}
-
-function _createSections() {
-    this.sections.push(new FeedView({
+function _createContent() {
+    this.content.push(new FeedView({
         tweetData: this.options.tweetData
     }));
 
-    this.sections.push(new ProfileView());
+    this.content.push(new ProfileView());
+}
+
+function _createFooter() {
+    this.buttonBar = new ButtonBar({
+        sections: this.options.sections
+    });
+
+    this.layout.footer.add(this.buttonBar);
 }
 
 module.exports = AppView;
