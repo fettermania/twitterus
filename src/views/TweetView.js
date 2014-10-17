@@ -12,7 +12,7 @@ function TweetView() {
     var backgroundClass = this.options.index % 2 ? 'light-gray' : 'lightest-gray';
 
     this.tweet = new Surface({
-        content: this.options.tweet + '<br>',
+        content: this.options.tweet,
         classes: ['tweet', backgroundClass]
     });
 

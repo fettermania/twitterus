@@ -4,6 +4,7 @@ var Transform = require('famous/core/Transform');
 var Lightbox = require('famous/views/Lightbox');
 var Easing = require('famous/transitions/Easing');
 var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
+require('famous/inputs/FastClick');
 
 var FeedView = require('./FeedView');
 var ProfileView = require('./ProfileView');
@@ -42,27 +43,13 @@ function _createLayout() {
 
     this.add(this.layout);
 
-    this.contentLightbox = new Lightbox({
-        inTransform: Transform.translate(500, 0, -800),
-        outTransform: Transform.thenMove(Transform.rotateY(1.3), [-200, 0, -500]),
-        inTransition: { curve: Easing.outExpo, duration: 350},
-        outTransition: { curve: Easing.inQuad, duration: 250},
-        inOpacity: 1,
-        outOpacity: 1,
-        overlap: false
-    });
+    //move into config
+    this.contentLightbox = new Lightbox(this.options.transitions.content);
 
     this.layout.content.add(this.contentLightbox);
 
-    this.headerLightbox = new Lightbox({
-        inTransform: Transform.translate(0, -100, 0),
-        outTransform: Transform.translate(0, -100, 0),
-        inTransition: { curve: Easing.outExpo, duration: 350},
-        outTransition: { curve: Easing.inQuad, duration: 250},
-        inOpacity: 1,
-        outOpacity: 0,
-        overlap: false
-    });
+    //move into config
+    this.headerLightbox = new Lightbox(this.options.transitions.header);
 
     this.layout.header.add(this.headerLightbox);
 }
