@@ -17,6 +17,7 @@ function AppView() {
     this.headers = [];
     this.content = [];
 
+    // fettermania: why not this._createLayout(), etc?
     _createLayout.call(this);
     _createHeaders.call(this);
     _createContent.call(this);

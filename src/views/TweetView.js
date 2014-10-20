@@ -11,6 +11,7 @@ function TweetView() {
 
     var backgroundClass = this.options.index % 2 ? 'light-gray' : 'lightest-gray';
 
+    // fettermania: here is good to explain where we DO employ css for position (passing, in this case)
     this.tweet = new Surface({
         content: this.options.tweet,
         classes: ['tweet', backgroundClass]

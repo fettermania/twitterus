@@ -14,6 +14,7 @@ function FeedView() {
         }
     });
 
+    // fettermania: here is where Trost could play with physics options
     var feed = new Scrollview({
         groupScroll: true
     });

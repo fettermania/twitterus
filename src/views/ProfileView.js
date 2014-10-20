@@ -28,6 +28,7 @@ function _createProfilePic() {
         transform: Transform.translate(0, -100, 1)
     });
 
+    // fettermania: ah, here we use an ImageSurfae.  Will need to explain why we use <img src elsewhere
     var profilePic = new ImageSurface({
         size: [200, 200],
         content: 'images/shu.jpg',

@@ -31,6 +31,10 @@ module.exports = {
                 }
         }
     ],
+
+    // fettermania: here is where Melody would play with animations.
+    // question, however - if she wanted a custom animation, is it fully
+    // specifiable here, or would she create a registered curve?
     transitions: {
         content: {
             inTransform: Transform.translate(500, 0, -800),

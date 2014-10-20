@@ -1,3 +1,4 @@
+// fettermania: do we need both TweetData and tweet_data.json?
 module.exports = [  
     {  
         "user":{  

@@ -10,6 +10,7 @@ Transitionable.registerMethod('spring', SpringTransition);
 function ButtonView() {
     View.apply(this, arguments);
 
+    // fettermania: good to add comment about 0 == unclicked
     this.toggleState = 0;
 
     this.buttonScale = new Transitionable(1);
@@ -46,6 +47,7 @@ function _createButton() {
 
     this.buttonSurface = new Surface({
         size: [true, true],
+        // fettermania: instead of ImageSurface?  Is this just introducing fewer concepts?
         content: '<img src="' + this.options.iconUrl + '" width="20"><p>' + this.options.label + '</p>',
         classes: ['button']
     });

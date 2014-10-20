@@ -10,6 +10,8 @@ function ButtonBar() {
     _createLayout.call(this);
     _createButtons.call(this);
 
+    // fettermania: is this just a declaration for clarity's sake?
+    // if so, wouldn't this.buttons be up here?
     this.selection;
 
     this._eventInput.on('buttonClick', this.select.bind(this));
